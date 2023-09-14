@@ -9,11 +9,7 @@
     </div>
     <SkeletonLoader class="side-section-top-skeleton" />
     <div class="side-section-description">
-      <SkeletonLoader class="side-section-description-skeleton" />
-      <SkeletonLoader class="side-section-description-skeleton" />
-      <SkeletonLoader class="side-section-description-skeleton" />
-      <SkeletonLoader class="side-section-description-skeleton" />
-      <SkeletonLoader class="side-section-description-skeleton" />
+      <SkeletonLoader v-for="_ in Array(5)" class="side-section-description-skeleton" />
     </div>
     <SkeletonLoader
       class="side-section-description-skeleton side-section-description-skeleton-bottom"
