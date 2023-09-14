@@ -20,9 +20,6 @@
     rgba(214, 215, 216, 0.05) 100%
   );
   background-size: 200% 100%;
-  box-shadow:
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
   animation: bgAnimate 1.2s linear infinite;
 }
 </style>
