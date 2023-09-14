@@ -29,6 +29,7 @@ import { SkeletonLoader } from '@/components/ui'
   flex-direction: column;
   align-items: center;
   gap: 1.25rem;
+  border: 1px solid var(--color-border);
   &-image-container {
     overflow: hidden;
     border-radius: var(--border-radius);
