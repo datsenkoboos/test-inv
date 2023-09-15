@@ -1,3 +1,3 @@
-import useUiStore from './uiStore'
+import useAppStore from './appStore'
 
-export { useUiStore }
+export { useAppStore }
