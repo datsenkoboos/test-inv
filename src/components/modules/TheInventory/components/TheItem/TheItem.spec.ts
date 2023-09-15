@@ -1,14 +1,10 @@
 import TheItem from './TheItem.vue'
 import { describe, it, expect } from 'vitest'
 import { shallowMount, type ComponentMountingOptions } from '@vue/test-utils'
-import type { Item } from '@/models'
+import { ItemMock } from '@/mocks'
 import { createTestingPinia } from '@pinia/testing'
-import { useUiStore } from '@/stores'
+import { useAppStore } from '@/stores'
 
-const ItemMock: Item = {
-  color: 'color',
-  quantity: 1
-}
 const defaultMountOptions: ComponentMountingOptions<typeof TheItem> = {
   props: {
     item: ItemMock
@@ -32,17 +28,6 @@ describe('TheItem', () => {
       expect(wrapper.get(itemQuantitySelector).text()).toBe(
         defaultMountOptions.props!.item.quantity.toString()
       )
-    })
-  })
-  describe('user interactions', () => {
-    it('click - should call uiStore.editItem with props.item', async () => {
-      const wrapper = shallowMount(TheItem, defaultMountOptions)
-      const uiStore = useUiStore()
-
-      await wrapper.get(theItemSelector).trigger('click')
-
-      expect(uiStore.editItem).toHaveBeenCalled()
-      expect(uiStore.editItem).toHaveBeenCalledWith(defaultMountOptions.props!.item)
     })
   })
 })

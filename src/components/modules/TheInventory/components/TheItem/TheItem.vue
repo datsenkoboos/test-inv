@@ -1,6 +1,6 @@
 <template>
-  <div class="item" @click="uiStore.editItem(item)" data-testid="the-item">
-    <ItemIcon :color="item.color" size="55px" data-testid="item-icon" />
+  <div class="item" data-testid="the-item">
+    <ItemIcon :color="item.color" :size="55" data-testid="item-icon" />
     <div class="item-quantity" data-testid="item-quantity">
       {{ item.quantity }}
     </div>
@@ -9,9 +9,9 @@
 <script setup lang="ts">
 import type { Item } from '@/models'
 import { ItemIcon } from '@/components/ui'
-import { useUiStore } from '@/stores'
+import { useAppStore } from '@/stores'
 
-const uiStore = useUiStore()
+const appStore = useAppStore()
 
 const props = defineProps<{
   item: Item
