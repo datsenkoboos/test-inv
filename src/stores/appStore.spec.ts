@@ -3,6 +3,7 @@ import { setActivePinia, createPinia } from 'pinia'
 import { afterEach, beforeAll, describe, expect, test, vi } from 'vitest'
 import dataInit from '@/dataInit'
 import { LocalStorageMock } from '@/mocks'
+import type { ItemStorage } from '@/models'
 
 const testIndex = 7
 
@@ -13,7 +14,7 @@ describe('UI Store', () => {
   })
   afterEach(() => {
     // LocalStorageMock state reset
-    LocalStorageMock.setItem('items', JSON.stringify({}))
+    LocalStorageMock.removeItem('items')
     vi.clearAllMocks()
   })
   describe('state', () => {
@@ -75,6 +76,30 @@ describe('UI Store', () => {
       expect(store.showModal).toHaveBeenCalled()
       expect(store.setSelectedIndex).toHaveBeenCalled()
       expect(store.setSelectedIndex).toHaveBeenCalledWith(testIndex)
+    }),
+      test('init - should not call setItemStorage if localStorage does not have "items"', () => {
+        const store = useStore()
+
+        vi.spyOn(store, 'setItemStorage')
+
+        store.init()
+
+        expect(store.setItemStorage).not.toHaveBeenCalled()
+      })
+    test('init - should call setItemStorage with data from localStorage items if localStorage has "items"', () => {
+      const newData: ItemStorage = {
+        '5': { color: 'test', quantity: 5 }
+      }
+      LocalStorageMock.setItem('items', JSON.stringify(newData))
+
+      const store = useStore()
+
+      vi.spyOn(store, 'setItemStorage')
+
+      store.init()
+
+      expect(store.setItemStorage).toHaveBeenCalled()
+      expect(store.setItemStorage).toHaveBeenCalledWith(newData)
     })
   })
 })

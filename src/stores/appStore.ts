@@ -32,6 +32,11 @@ const useAppStore = defineStore('app', {
     editItem(index: number): void {
       this.setSelectedIndex(index)
       this.showModal()
+    },
+    init(): void {
+      if (localStorage.getItem('items')) {
+        this.setItemStorage(JSON.parse(localStorage.getItem('items')!))
+      }
     }
   }
 })
