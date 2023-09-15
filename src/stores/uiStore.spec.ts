@@ -1,7 +1,7 @@
 import { ItemMock } from '@/mocks'
 import useStore from './uiStore'
 import { setActivePinia, createPinia } from 'pinia'
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 describe('UI Store', () => {
   beforeEach(() => {
