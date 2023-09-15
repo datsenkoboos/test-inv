@@ -1,10 +1,10 @@
-import { vi } from 'vitest';
+import { vi } from 'vitest'
 
-const LocalStorageMock: Partial<Storage> = (() => {
-  const storage: { [key: string]: string } = {};
+const LocalStorageMock: Omit<Storage, 'length' | 'clear' | 'key' | 'removeItem'> = (() => {
+  const storage: { [key: string]: string } = {}
   return {
     getItem: vi.fn((key: string) => storage[key]),
-    setItem: vi.fn((key: string, value: string) => (storage[key] = value)),
-  };
-})();
-export default LocalStorageMock;
+    setItem: vi.fn((key: string, value: string) => (storage[key] = value))
+  }
+})()
+export default LocalStorageMock
