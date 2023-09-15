@@ -11,21 +11,13 @@
 import { onBeforeMount } from 'vue'
 import { SideSection, BottomSection } from './components'
 import { TheInventory } from './components/modules'
-import type { ItemStorage } from './models'
-import { useUiStore } from './stores'
-import dataInit from './dataInit'
+import { useAppStore } from './stores'
 
-const uiStore = useUiStore()
+const appStore = useAppStore()
 
 function init() {
-  if (!localStorage.getItem('items')) {
-    localStorage.setItem('items', JSON.stringify(dataInit))
-    const firstKey = Object.keys(dataInit)[0]
-    uiStore.setSelectedItem(dataInit[firstKey]!)
-  } else {
-    const data: ItemStorage = JSON.parse(localStorage.getItem('items')!)
-    const firstKey = Object.keys(data)[0]
-    uiStore.setSelectedItem(data[firstKey]!)
+  if (localStorage.getItem('items')) {
+    appStore.setItemStorage(JSON.parse(localStorage.getItem('items')!))
   }
 }
 
