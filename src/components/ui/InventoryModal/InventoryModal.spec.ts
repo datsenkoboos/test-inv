@@ -7,21 +7,21 @@ const closeButtonSelector = '[data-testid=close-button]'
 
 describe('InventoryModal', () => {
   describe('props', () => {
-    it('show - should not render when set to false', () => {
+    it('show - should render invisible when set to false', () => {
       const wrapper = shallowMount(InventoryModal, {
         props: {
           show: false
         }
       })
-      expect(wrapper.find(inventoryModalSelector).exists()).toBe(false)
+      expect(wrapper.get(inventoryModalSelector).isVisible()).toBe(false)
     })
-    it('show - should render when set to true', () => {
+    it('show - should render visible when set to true', () => {
       const wrapper = shallowMount(InventoryModal, {
         props: {
           show: true
         }
       })
-      expect(wrapper.find(inventoryModalSelector).exists()).toBe(true)
+      expect(wrapper.get(inventoryModalSelector).isVisible()).toBe(true)
     })
   })
   describe('user interactions', () => {

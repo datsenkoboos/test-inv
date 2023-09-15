@@ -1,6 +1,6 @@
 <template>
-  <transition name="slide">
-    <section class="modal" v-if="show" data-testid="inventory-modal">
+  <transition appear name="slide">
+    <section class="modal" v-show="show" data-testid="inventory-modal">
       <CloseButton @click="emit('close')" data-testid="close-button" />
       <slot />
     </section>
@@ -30,5 +30,22 @@ const emit = defineEmits<{
   backdrop-filter: blur(7px);
   border: 1px solid var(--color-border);
   border-top: none;
+}
+.slide-enter-active {
+  transition: transform 0.3s;
+}
+
+.slide-leave-active {
+  transition: transform 0.3s;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(100%);
+}
+
+.slide-leave-from,
+.slide-enter-to {
+  transform: translateX(0);
 }
 </style>
