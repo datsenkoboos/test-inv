@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <section class="modal" v-show="show" data-testid="inventory-modal">
+    <section class="modal" v-if="show" data-testid="inventory-modal">
       <CloseButton @click="emit('close')" data-testid="close-button" />
       <slot />
     </section>
