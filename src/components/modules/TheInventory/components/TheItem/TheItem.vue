@@ -1,0 +1,43 @@
+<template>
+  <div class="item" @click="uiStore.editItem(item)" data-testid="the-item">
+    <ItemIcon :color="item.color" size="55px" data-testid="item-icon" />
+    <div class="item-quantity" data-testid="item-quantity">
+      {{ item.quantity }}
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import type { Item } from '@/models'
+import { ItemIcon } from '@/components/ui'
+import { useUiStore } from '@/stores'
+
+const uiStore = useUiStore()
+
+const props = defineProps<{
+  item: Item
+}>()
+</script>
+<style lang="scss" scoped>
+.item {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  &-quantity {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 18%;
+    height: 18%;
+    border-top-left-radius: 6px;
+    border-left: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+  }
+}
+</style>
