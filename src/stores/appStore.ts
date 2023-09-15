@@ -24,13 +24,14 @@ const useAppStore = defineStore('app', {
     setItemStorage(data: ItemStorage): void {
       this.items = {}
       Object.assign(this.items, data)
+      localStorage.setItem('items', JSON.stringify(data))
     },
     setSelectedIndex(index: number | null): void {
       this.selectedIndex = index
     },
     editItem(index: number): void {
-      this.showModal()
       this.setSelectedIndex(index)
+      this.showModal()
     }
   }
 })

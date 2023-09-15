@@ -1,14 +1,20 @@
-import { ItemMock } from '@/mocks'
 import useStore from './appStore'
 import { setActivePinia, createPinia } from 'pinia'
-import { beforeEach, describe, expect, test, vi } from 'vitest'
+import { afterEach, beforeAll, describe, expect, test, vi } from 'vitest'
 import dataInit from '@/dataInit'
+import { LocalStorageMock } from '@/mocks'
 
 const testIndex = 7
 
 describe('UI Store', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     setActivePinia(createPinia())
+    Object.defineProperty(window, 'localStorage', { value: LocalStorageMock })
+  })
+  afterEach(() => {
+    // LocalStorageMock state reset
+    LocalStorageMock.setItem('items', JSON.stringify({}))
+    vi.clearAllMocks()
   })
   describe('state', () => {
     test('modal - should be false', () => {
@@ -39,14 +45,14 @@ describe('UI Store', () => {
 
       expect(store.modal).toBe(false)
     })
-    test('setSelectedIndex - should set store.selectedCell to passed value', () => {
+    test('setSelectedIndex - should set store.selectedIndex to passed value', () => {
       const store = useStore()
 
       store.setSelectedIndex(testIndex)
 
       expect(store.selectedIndex).toBe(testIndex)
     })
-    test('setItemStorage - should set store.items to passed value', () => {
+    test('setItemStorage - should set store.items and localStorage.items to passed value', () => {
       const newStorage = {
         5: { color: 'green', quantity: 1 }
       }
@@ -55,6 +61,8 @@ describe('UI Store', () => {
       store.setItemStorage(newStorage)
 
       expect(store.items).toStrictEqual(newStorage)
+      expect(LocalStorageMock.setItem).toHaveBeenCalled()
+      expect(LocalStorageMock.setItem).toHaveBeenCalledWith('items', JSON.stringify(newStorage))
     })
     test('editItem - should call showModal and setSelectedIndex with passed value', () => {
       const store = useStore()
