@@ -11,17 +11,26 @@
 import { onBeforeMount } from 'vue'
 import { SideSection, BottomSection } from './components'
 import { TheInventory } from './components/modules'
-import type { Item } from './models'
+import type { ItemStorage } from './models'
+import { useUiStore } from './stores'
+import dataInit from './dataInit'
+
+const uiStore = useUiStore()
+
+function init() {
+  if (!localStorage.getItem('items')) {
+    localStorage.setItem('items', JSON.stringify(dataInit))
+    const firstKey = Object.keys(dataInit)[0]
+    uiStore.setSelectedItem(dataInit[firstKey]!)
+  } else {
+    const data: ItemStorage = JSON.parse(localStorage.getItem('items')!)
+    const firstKey = Object.keys(data)[0]
+    uiStore.setSelectedItem(data[firstKey]!)
+  }
+}
 
 onBeforeMount(() => {
-  if (!localStorage.getItem('items')) {
-    const initialData: { [key: number]: null | Item } = {
-      0: { color: 'green', quantity: 4 },
-      1: { color: 'orange', quantity: 2 },
-      2: { color: 'purple', quantity: 5 }
-    }
-    localStorage.setItem('items', JSON.stringify(initialData))
-  }
+  init()
 })
 </script>
 <style lang="scss" scoped>
