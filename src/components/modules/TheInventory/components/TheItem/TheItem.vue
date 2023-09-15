@@ -1,5 +1,5 @@
 <template>
-  <div class="item" data-testid="the-item">
+  <div class="item" data-testid="the-item" draggable="true">
     <ItemIcon :color="item.color" :size="55" data-testid="item-icon" />
     <div class="item-quantity" data-testid="item-quantity">
       {{ item.quantity }}
@@ -25,6 +25,7 @@ const props = defineProps<{
   align-items: center;
   width: 100%;
   height: 100%;
+  transition: transform 0.5s;
   &-quantity {
     position: absolute;
     bottom: 0;
@@ -38,6 +39,12 @@ const props = defineProps<{
     justify-content: center;
     align-items: center;
     font-size: 0.75rem;
+  }
+  &:active {
+    transform: scale(1.05);
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
   }
 }
 </style>
