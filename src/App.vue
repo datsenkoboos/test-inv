@@ -15,14 +15,8 @@ import { useAppStore } from './stores'
 
 const appStore = useAppStore()
 
-function init() {
-  if (localStorage.getItem('items')) {
-    appStore.setItemStorage(JSON.parse(localStorage.getItem('items')!))
-  }
-}
-
 onBeforeMount(() => {
-  init()
+  appStore.init()
 })
 </script>
 <style lang="scss" scoped>

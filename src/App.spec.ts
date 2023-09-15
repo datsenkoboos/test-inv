@@ -15,30 +15,13 @@ describe('App', () => {
     LocalStorageMock.setItem('items', JSON.stringify({}))
     vi.clearAllMocks()
   })
-  it('init - should not call appStore.setItemStorage if localStorage does not have "items"', () => {
+  it('init - should call appStore.init', () => {
     const wrapper = shallowMount(App, {
       global: {
         plugins: [createTestingPinia()]
       }
     })
-    const appStore = useAppStore()
-
-    expect(appStore.setItemStorage).not.toHaveBeenCalled()
-  })
-  it('init - should call appStore.setItemStorage with data from localStorage items if localStorage has "items"', () => {
-    const newData: ItemStorage = {
-      '5': { color: 'test', quantity: 5 }
-    }
-    LocalStorageMock.setItem('items', JSON.stringify(newData))
-
-    const wrapper = shallowMount(App, {
-      global: {
-        plugins: [createTestingPinia()]
-      }
-    })
-    const appStore = useAppStore()
-
-    expect(appStore.setItemStorage).toHaveBeenCalled()
-    expect(appStore.setItemStorage).toHaveBeenCalledWith(newData)
+    const store = useAppStore()
+    expect(store.init).toHaveBeenCalled()
   })
 })
