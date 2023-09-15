@@ -16,7 +16,6 @@
           v-if="appStore.items[index]"
           :item="appStore.items[index]!"
           @dragstart="onDrag($event, index)"
-          draggable="true"
           :data-testid="`item-${index}`"
         />
       </div>
