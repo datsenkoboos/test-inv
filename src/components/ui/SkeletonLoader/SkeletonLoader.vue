@@ -1,6 +1,31 @@
 <template>
-  <div class="skeleton-loader">&nbsp;</div>
+  <div
+    class="skeleton-loader"
+    :style="{ width: width, height: heightMap[height] ?? height }"
+    data-testid="skeleton"
+  >
+    &nbsp;
+  </div>
 </template>
+<script setup lang="ts">
+const props = withDefaults(
+  defineProps<{
+    height?: 'sm' | 'md' | 'lg' | 'xl' | string
+    width?: string
+  }>(),
+  {
+    height: 'md',
+    width: '100%'
+  }
+)
+
+const heightMap = {
+  sm: '10px',
+  md: '26px',
+  lg: '30px',
+  xl: '36px'
+}
+</script>
 <style lang="scss">
 @keyframes bgAnimate {
   0% {
