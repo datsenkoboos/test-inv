@@ -7,15 +7,17 @@
         class="section-image"
       />
     </div>
-    <SkeletonLoader class="section-top-skeleton" />
+    <SkeletonLoader width="190px" />
     <div class="section-description">
-      <SkeletonLoader v-for="_ in Array(5)" class="section-description-skeleton" />
+      <SkeletonLoader v-for="(_, index) in Array(5)" :width="widthMap[index]" size="sm" />
     </div>
-    <SkeletonLoader class="section-description-skeleton section-description-skeleton-bottom" />
+    <SkeletonLoader size="sm" width="80px" />
   </aside>
 </template>
 <script setup lang="ts">
 import { SkeletonLoader } from '@/components/ui'
+
+const widthMap = ['154px', '188px', '168px', '158px', '118px']
 </script>
 <style lang="scss" scoped>
 .section {
@@ -40,33 +42,6 @@ import { SkeletonLoader } from '@/components/ui'
     flex-direction: column;
     align-items: center;
     gap: 16px;
-    &-skeleton {
-      height: 10px;
-      border-radius: 4px;
-      &-bottom {
-        width: 80px;
-      }
-    }
-    & :nth-child(1) {
-      width: 154px;
-    }
-    & :nth-child(2) {
-      width: 188px;
-    }
-    & :nth-child(3) {
-      width: 168px;
-    }
-    & :nth-child(4) {
-      width: 158px;
-    }
-    & :nth-child(5) {
-      width: 118px;
-    }
-  }
-  &-top-skeleton {
-    border-radius: 8px;
-    width: 190px;
-    height: 26px;
   }
 }
 </style>
