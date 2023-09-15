@@ -1,2 +1,2 @@
 import BottomSection from './BottomSection.vue'
-export default BottomSection;
+export default BottomSection

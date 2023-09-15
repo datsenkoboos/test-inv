@@ -8,17 +8,17 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onBeforeMount } from 'vue';
+import { onBeforeMount } from 'vue'
 import { SideSection, BottomSection } from './components'
 import { TheInventory } from './components/modules'
-import type { Item } from './models';
+import type { Item } from './models'
 
 onBeforeMount(() => {
   if (!localStorage.getItem('items')) {
     const initialData: { [key: number]: null | Item } = {
       0: { color: 'green', quantity: 4 },
       1: { color: 'orange', quantity: 2 },
-      2: { color: 'purple', quantity: 5 },
+      2: { color: 'purple', quantity: 5 }
     }
     localStorage.setItem('items', JSON.stringify(initialData))
   }

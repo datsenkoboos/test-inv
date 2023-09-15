@@ -11,9 +11,7 @@
     <div class="section-description">
       <SkeletonLoader v-for="_ in Array(5)" class="section-description-skeleton" />
     </div>
-    <SkeletonLoader
-      class="section-description-skeleton section-description-skeleton-bottom"
-    />
+    <SkeletonLoader class="section-description-skeleton section-description-skeleton-bottom" />
   </aside>
 </template>
 <script setup lang="ts">

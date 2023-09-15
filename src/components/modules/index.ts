@@ -1,3 +1,3 @@
-import TheInventory from "./TheInventory";
+import TheInventory from './TheInventory'
 
 export { TheInventory }

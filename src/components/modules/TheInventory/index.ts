@@ -1,2 +1,2 @@
-import TheInventory from "./TheInventory.vue";
-export default TheInventory;
+import TheInventory from './TheInventory.vue'
+export default TheInventory
