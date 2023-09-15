@@ -1,7 +1,11 @@
 <template>
   <div
     class="skeleton-loader"
-    :style="{ width: width, height: heightMap[height] ?? height }"
+    :style="{
+      width: width,
+      height: height ?? heightMap[size],
+      borderRadius: borderRadius ?? borderRadiusMap[size]
+    }"
     data-testid="skeleton"
   >
     &nbsp;
@@ -10,11 +14,13 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    height?: 'sm' | 'md' | 'lg' | 'xl' | string
+    size?: 'sm' | 'md' | 'lg' | 'xl'
+    borderRadius?: string
     width?: string
+    height?: string
   }>(),
   {
-    height: 'md',
+    size: 'md',
     width: '100%'
   }
 )
@@ -24,6 +30,12 @@ const heightMap = {
   md: '26px',
   lg: '30px',
   xl: '36px'
+}
+const borderRadiusMap = {
+  sm: '4px',
+  md: '8px',
+  lg: '8px',
+  xl: '12px'
 }
 </script>
 <style lang="scss">
