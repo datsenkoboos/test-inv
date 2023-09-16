@@ -1,5 +1,5 @@
 <template>
-  <div class="input-wrapper">
+  <div class="input-wrapper" :style="{ borderColor: focused ? 'white' : '' }" @click="input.focus()">
     <input
       type="text"
       :placeholder="placeholder"
@@ -7,11 +7,13 @@
       :value="value"
       ref="input"
       @input="updateValue"
+      @focus="focused = true"
+      @blur="focused = false"
     />
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 
 const props = defineProps<{
   name: string
@@ -23,6 +25,7 @@ const emit = defineEmits<{
 }>()
 
 const input = ref()
+const focused = ref(false)
 
 function updateValue(event: Event) {
   emit('update:value', (event.target as HTMLInputElement).value)
@@ -32,12 +35,14 @@ function updateValue(event: Event) {
 <style lang="scss" scoped>
 .input-wrapper {
   background-color: var(--color-bg-secondary);
+  cursor: text;
   border: 1px solid var(--color-border);
   padding: 0 11px;
   height: 40px;
   display: flex;
   align-items: center;
   border-radius: 4px;
+  transition: border-color .3s;
   input {
     color: white;
     border: none;
