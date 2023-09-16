@@ -1,6 +1,7 @@
 <template>
   <InventoryModal :show="appStore.modal" @close="appStore.hideModal" class="edit">
-    <div v-show="showQuantityEdit" class="edit-quantity-modal">
+    <transition appear name="slide-vert">
+      <div v-show="showQuantityEdit" class="edit-quantity-modal">
       <TextInput
         type="number"
         :value="quantity"
@@ -27,6 +28,7 @@
         >
       </div>
     </div>
+    </transition>
     <ItemIcon
       :color="
         appStore.items[appStore.selectedIndex!]
@@ -76,7 +78,7 @@ function deleteItem() {
   appStore.setItemStorage(data)
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .edit {
   padding: 0 15px 18px;
   display: flex;
@@ -127,5 +129,22 @@ function deleteItem() {
       }
     }
   }
+}
+.slide-vert-enter-active {
+  transition: transform 0.3s;
+}
+
+.slide-vert-leave-active {
+  transition: transform 0.3s;
+}
+
+.slide-vert-enter-from,
+.slide-vert-leave-to {
+  transform: translateY(100%);
+}
+
+.slide-vert-leave-from,
+.slide-vert-enter-to {
+  transform: translateY(0);
 }
 </style>
