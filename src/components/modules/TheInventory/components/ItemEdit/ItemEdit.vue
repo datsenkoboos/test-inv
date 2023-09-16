@@ -1,33 +1,40 @@
 <template>
-  <InventoryModal :show="appStore.modal" @close="appStore.hideModal" class="edit">
+  <InventoryModal
+    :show="appStore.modal"
+    @close="appStore.hideModal"
+    class="edit"
+    data-testid="inv-modal"
+  >
     <transition appear name="slide-vert">
-      <div v-show="showQuantityEdit" class="edit-quantity-modal">
-      <TextInput
-        type="number"
-        :value="quantity"
-        @update:value="quantity = $event.replace(/\D/g, '')"
-        name="quantity"
-        placeholder="Введите количество"
-      />
-      <div class="edit-quantity-modal-controls">
-        <TheButton
-          class="edit-quantity-modal-controls-cancel"
-          size="md"
-          bg-color="white"
-          text-color="black"
-          @click="showQuantityEdit = false"
-          >Отмена</TheButton
-        >
-        <TheButton
-          class="edit-quantity-modal-controls-confirm"
-          size="md"
-          bg-color="#fa7272"
-          text-color="white"
-          @click="deleteItem"
-          >Подтвердить</TheButton
-        >
+      <div v-show="showQuantityEdit" class="edit-quantity-modal" data-testid="quantity-modal">
+        <TextInput
+          type="number"
+          :value="quantity"
+          @update:value="quantity = $event.replace(/\D/g, '')"
+          name="quantity"
+          placeholder="Введите количество"
+        />
+        <div class="edit-quantity-modal-controls">
+          <TheButton
+            class="edit-quantity-modal-controls-cancel"
+            size="md"
+            bg-color="white"
+            text-color="black"
+            @click="showQuantityEdit = false"
+            data-testid="cancel-button"
+            >Отмена</TheButton
+          >
+          <TheButton
+            class="edit-quantity-modal-controls-confirm"
+            size="md"
+            bg-color="#fa7272"
+            text-color="white"
+            @click="deleteItem"
+            data-testid="submit-button"
+            >Подтвердить</TheButton
+          >
+        </div>
       </div>
-    </div>
     </transition>
     <ItemIcon
       :color="
@@ -50,6 +57,7 @@
       bg-color="#fa7272"
       text-color="white"
       @click="showQuantityEdit = true"
+      data-testid="delete-button"
       >Удалить предмет</TheButton
     >
   </InventoryModal>
