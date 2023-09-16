@@ -1,5 +1,9 @@
 <template>
-  <div class="input-wrapper" :style="{ borderColor: focused ? 'white' : '' }" @click="input.focus()">
+  <div
+    class="input-wrapper"
+    :style="{ borderColor: focused ? 'white' : '' }"
+    @click="input.focus()"
+  >
     <input
       type="text"
       :placeholder="placeholder"
@@ -42,7 +46,7 @@ function updateValue(event: Event) {
   display: flex;
   align-items: center;
   border-radius: 4px;
-  transition: border-color .3s;
+  transition: border-color 0.3s;
   input {
     color: white;
     border: none;

@@ -9,9 +9,6 @@
 <script setup lang="ts">
 import type { Item } from '@/models'
 import { ItemIcon } from '@/components/ui'
-import { useAppStore } from '@/stores'
-
-const appStore = useAppStore()
 
 const props = defineProps<{
   item: Item
