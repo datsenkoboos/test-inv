@@ -4,7 +4,6 @@ import { LocalStorageMock } from './mocks'
 import { shallowMount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import { useAppStore } from './stores'
-import type { ItemStorage } from './models'
 
 describe('App', () => {
   beforeAll(() => {

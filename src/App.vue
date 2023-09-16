@@ -1,6 +1,6 @@
 <template>
-  <div class="wrapper">
-    <div class="wrapper-horizontal">
+  <div class="wrapper wrapper-vert">
+    <div class="wrapper">
       <SideSection />
       <TheInventory />
     </div>
@@ -22,11 +22,9 @@ onBeforeMount(() => {
 <style lang="scss" scoped>
 .wrapper {
   display: flex;
-  flex-direction: column;
   gap: 24px;
-}
-.wrapper-horizontal {
-  display: flex;
-  gap: 24px;
+  &-vert {
+    flex-direction: column;
+  }
 }
 </style>
